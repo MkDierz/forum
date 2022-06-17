@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('threads', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('tag_id')->unsigned();
             $table->string('title')->nullable(false);
-            $table->text('content')->nullable(false);
+            $table->text('content')->nullable(true);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
         });
     }
 

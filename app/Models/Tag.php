@@ -14,8 +14,9 @@ class Tag extends Model
      * @var array
      */
     protected $fillable = ['title', 'desc'];
+
     public function Thread()
     {
-        return $this->belongsToMany('App\Thread');
+        return $this->hasMany('App\Models\Thread');
     }
 }
