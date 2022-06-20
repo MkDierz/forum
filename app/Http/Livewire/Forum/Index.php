@@ -6,14 +6,17 @@ use App\Models\Reply;
 use App\Models\Tag;
 use App\Models\Thread;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Index extends Component
 {
+    use WithFileUploads;
+
     //thread vars
     public $threads;
     public $ThreadModalStatus = false;
     public $DeleteThreadModalStatus = false;
-    public $thread, $threadId, $threadTitle, $threadContent, $threadDate, $threadTag;
+    public $thread, $threadId, $threadTitle, $threadContent, $threadDate, $threadTag, $threadAttachment;
     //tags vars
     public $tags;
     public $TagModalStatus = false;
@@ -79,18 +82,21 @@ class Index extends Component
             'thread_id' => $this->threadTag,
             'title' => $this->threadTitle,
             'content' => $this->threadContent,
+            'attachment' => $this->threadAttachment
         ];
     }
 
-    public function saveThread($id = 0)
+    public function saveThread()
     {
+        if ($this->threadAttachment != null) {
+            $this->threadAttachment = $this->threadAttachment->store('files', 'public');
+        }
         if ($this->thread) {
-            $this->thread->update($this->threadData());
+            $this->thread->update(array_filter($this->threadData()));
             if ($this->thread->tag_id != $this->threadTag) {
                 $this->thread->update(['tag_id' => $this->threadTag]);
             }
         } else {
-            // dd($this->threadData());
             $thread = new Thread($this->threadData());
             $tag = Tag::find($this->threadTag);
             $tag->Thread()->save($thread);
