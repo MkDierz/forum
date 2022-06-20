@@ -75,13 +75,19 @@
             </div>
             <div class="col-span-6 mb-4 sm:col-span-4">
                 <x-jet-label for="threadTitle" value="{{ __('Title') }}" />
-                <x-jet-input wire:model="threadTitle" type="text" class="block w-full mt-1" autofocus />
+                <x-jet-input wire:model="threadTitle" type="text" class="block w-full mt-1" autofocus required />
                 <x-jet-input-error for="threadTitle" class="mt-2" />
             </div>
             <div class="col-span-6 mb-4 sm:col-span-4">
                 <x-jet-label for="threadContent" value="{{ __('Description') }}" />
-                <x-textarea wire:model="threadContent" type="text" class="block w-full mt-1" autofocus />
+                <x-textarea wire:model="threadContent" type="text" class="block w-full mt-1" required />
                 <x-jet-input-error for="threadContent" class="mt-2" />
+            </div>
+            <div class="col-span-6 mb-4 sm:col-span-4">
+                <x-jet-label for="threadAttachment" value="{{ __('Description') }}" />
+                <x-jet-input wire:model="threadAttachment" type="file" class="block w-full mt-1" accept="image/*"
+                    required />
+                <x-jet-input-error for="threadAttachment" class="mt-2" />
             </div>
         </x-slot>
 
@@ -97,7 +103,7 @@
                 @endif
                 <div>
 
-                    <x-jet-secondary-button wire:click="resetThread" wire:loading.attr="disabled">
+                    <x-jet-secondary-button wire:click="resetAll" wire:loading.attr="disabled">
                         {{ __('Cancel') }}
                     </x-jet-secondary-button>
 
@@ -121,12 +127,12 @@
             <!-- Title -->
             <div class="col-span-6 sm:col-span-4">
                 <x-jet-label for="tagTitle" value="{{ __('Title') }}" />
-                <x-jet-input wire:model="tagTitle" type="text" class="block w-full mt-1" autofocus />
+                <x-jet-input wire:model="tagTitle" type="text" class="block w-full mt-1" autofocus required />
                 <x-jet-input-error for="tagTitle" class="mt-2" />
             </div>
             <div class="col-span-6 sm:col-span-4">
                 <x-jet-label for="tagDesc" value="{{ __('Description') }}" />
-                <x-textarea wire:model="tagDesc" type="text" class="block w-full mt-1" />
+                <x-textarea wire:model="tagDesc" type="text" class="block w-full mt-1" required />
                 <x-jet-input-error for="tagDesc" class="mt-2" />
             </div>
         </x-slot>

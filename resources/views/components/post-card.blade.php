@@ -38,8 +38,10 @@
                     </div>
                     <x-card.comment-icon :comment="$data->reply" :id="$data->id" />
                 </div>
+                <img src="{{ asset('storage/' . $data->attachment) }}" alt="" srcset="">
             </div>
         </div>
     </div>
     <x-card.reply :reply="$data->reply" />
+
 </div>
