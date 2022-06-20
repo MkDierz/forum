@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('thread_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
             $table->string('title')->nullable(false);
-            $table->text('content')->nullable(false);
+            $table->text('content')->nullable(true);
             $table->timestamps();
             $table->foreign('thread_id')->references('id')->on('threads')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
