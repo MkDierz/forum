@@ -14,7 +14,7 @@ class Thread extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'content', 'tag_id'];
+    protected $fillable = ['title', 'content', 'tag_id', 'attachment'];
     /**
      * The "booting" method of the model.
      *
