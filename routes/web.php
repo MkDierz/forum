@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Forum;
+use UniSharp\LaravelFileManager\Lfm;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,3 +28,10 @@ Route::middleware([
     })->name('dashboard');
     Route::get('/forum', Forum\Index::class)->name('forum');
 });
+
+Route::group(
+    ['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']],
+    function () {
+        Lfm::routes();
+    }
+);
